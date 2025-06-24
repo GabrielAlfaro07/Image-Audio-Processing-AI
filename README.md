@@ -44,7 +44,7 @@ cd Backend
 pip install -r requirements.txt   # Asegúrate de tener los paquetes necesarios
 
 # Corre la API
-uvicorn api:app --reload --port 8000
+uvicorn main:app --reload --port 8000
 ```
 
 ---
