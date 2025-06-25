@@ -3,3 +3,6 @@ uvicorn
 transformers
 torch
 pydub
+tensorflow
+Pillow
+python-multipart
