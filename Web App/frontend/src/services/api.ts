@@ -9,3 +9,14 @@ export const transcribeAudio = async (audioBlob: Blob): Promise<string> => {
   const response = await axios.post(`${BASE_URL}/transcribe`, formData);
   return response.data.transcription;
 };
+
+export const predictImageClass = async (imageFile: File | Blob): Promise<{ predicted_class: number; confidence: number }> => {
+  const formData = new FormData();
+  formData.append("file", imageFile, "image.jpg");
+
+  const response = await axios.post(`${BASE_URL}/EfficientNet`, formData, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
+
+  return response.data;
+};
