@@ -11,7 +11,6 @@ IA-Multimodal/
 ├── Frontend/            # Interfaz web (React + Vite + Tailwind)
 ├── Backend/             # API en FastAPI con modelos IA
 ├── modelo_final/        # Modelos preentrenados (por ejemplo: Wav2Vec, CNN, etc.)
-├── audios/              # Audios de entrada para pruebas (opcional)
 └── README.md
 ```
 
