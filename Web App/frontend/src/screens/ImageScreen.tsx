@@ -2,12 +2,12 @@ import { useState } from "react";
 import BlurText from "../animations/BlurText";
 import AnimatedContent from "../animations/AnimatedContent";
 import Logo from "../components/Logo";
-import { predictImageClass } from "../services/api";
+import { predictImageEfficientNet, predictImageMobileNet } from "../services/api";
 
 const ImageScreen = () => {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-  const [selectedOption, setSelectedOption] = useState("detectar");
+  const [selectedOption, setSelectedOption] = useState("");
   const [prediction, setPrediction] = useState<{ predicted_class: number; confidence: number } | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -23,19 +23,22 @@ const ImageScreen = () => {
   };
 
   const handlePredict = async () => {
-    if (!selectedImage) return;
-    setLoading(true);
-    setError(null);
-    setPrediction(null);
-    try {
-      const result = await predictImageClass(selectedImage);
-      setPrediction(result);
-    } catch {
-      setError("Error al procesar la imagen.");
-    } finally {
-      setLoading(false);
-    }
-  };
+  if (!selectedImage) return;
+  setLoading(true);
+  setError(null);
+  setPrediction(null);
+  try {
+    const result =
+      selectedOption === "EfficientNet"
+        ? await predictImageEfficientNet(selectedImage)
+        : await predictImageMobileNet(selectedImage);
+    setPrediction(result);
+  } catch {
+    setError("Error al procesar la imagen.");
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="min-h-screen bg-radial-center flex flex-col items-center justify-center px-6 py-10">
@@ -87,8 +90,8 @@ const ImageScreen = () => {
               onChange={(e) => setSelectedOption(e.target.value)}
               className="mt-4 w-full bg-white/10 text-white border border-white/20 rounded-lg p-2 text-sm focus:outline-none focus:ring-2 focus:ring-white/40"
             >
-              <option value="detectar">Detección de objetos</option>
-              <option value="analizar">Análisis de contenido</option>
+              <option value="EfficientNet">EfficientNet</option>
+              <option value="MobileNet">MobileNet</option>
             </select>
 
             <button
