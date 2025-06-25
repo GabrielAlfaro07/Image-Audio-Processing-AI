@@ -26,7 +26,7 @@ IA-Multimodal/
 
 ---
 
-## 🖥Frontend (React + Vite)
+## Frontend (React + Vite)
 
 ```bash
 cd Frontend
