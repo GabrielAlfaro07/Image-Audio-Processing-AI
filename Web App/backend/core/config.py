@@ -1,7 +1,8 @@
 from pathlib import Path
 
 class Settings:
-    BASE_DIR = Path(__file__).resolve().parents[3]
+    # Cambiar el número en parents según la estructura de carpetas
+    BASE_DIR = Path(__file__).resolve().parents[1]
     MODEL_PATH = BASE_DIR / "modelo_ctc"
     ALLOWED_ORIGINS = [
         "http://localhost:5173",
