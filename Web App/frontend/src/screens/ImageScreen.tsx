@@ -90,8 +90,8 @@ const ImageScreen = () => {
               onChange={(e) => setSelectedOption(e.target.value)}
               className="mt-4 w-full bg-white/10 text-white border border-white/20 rounded-lg p-2 text-sm focus:outline-none focus:ring-2 focus:ring-white/40"
             >
-              <option value="EfficientNet">EfficientNet</option>
               <option value="MobileNet">MobileNet</option>
+              <option value="EfficientNet">EfficientNet</option>
             </select>
 
             <button
